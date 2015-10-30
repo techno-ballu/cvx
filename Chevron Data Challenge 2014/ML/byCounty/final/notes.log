@@ -1,0 +1,44 @@
+[base] Extracting the Top_Zone from Between_Zone column...
+[completions] Using the completions data without the Remarks column...
+
+[geology] Replace the NAs in handpicked columns by values from the interpolated columns...
+[1] "CLFK..KHW. = CLEARFORK..MAP."
+[1] "U_SPBR..KHW. = SPRABERRY_U..MAP."
+[1] "L_SPBR..KHW. = SPRABERRY_L..MAP."
+[1] "WFMP..KHW. = WOLFCAMP..MA"
+[1] "WFMP_L..KHW. = WOLFCAMP_L.."
+[1] "WFMP_ATB..KH = WFMP_ATB..MA"
+[1] "CLINE..KHW. = CLINE..MAP."
+[1] "STRN..KHW. = STRAWN..MAP."
+[1] "ATOK..KHW. = ATOKA..MAP."
+[1] "BEND..KHW. = BEND..MAP."
+[1] "ATOKA_L..KHW = ATOKA_L..MAP"
+[1] "MPLM..KHW. = MISSISSIPPIA"
+[1] "WDFD..KHW. = WOODFORD..MA"
+[1] "DVNN..KHW. = DEVINOAN_UNC"
+
+[geology] Dropped the interpolated columns...
+[geology] Ordered the layers as:
+1. Clearfork
+2. Upper_Spraberry
+3. Lower_Spraberry
+4. Wolfcamp
+5. Lower_Wolfcamp
+6. Amacker_Tippet_Base
+7. Cline
+8. Strawn
+9. Atoka
+10. Bend
+11. Lower_Atoka
+12. Mississippian
+13. Woodford
+14. Devonian
+
+[geology] Numbered the Top_Zone & Deepest_Zone
+[geology] Adding Total.Height = (height at which Deepest_Zone starts – height at which Top_Zone starts)
+[geology] Adding Geology.Score (consult docs!)
+[geology] Updating Between_Zone = (Top_Zone - Deepest_Zone)
+[geology] Dropping the geology layers info
+
+Data has 2722 rows and 42 columns
+Dropping some more redundant columns - Depth.Top Propping.Agent.Units Fluid.Units Top_Zone 

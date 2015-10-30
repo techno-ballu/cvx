@@ -1,0 +1,277 @@
+
+Replace empty strings('') and #VALUE! as NA for:
+ WB.Spacing.Proxy
+ SPBY.Spacing.Proxy
+ Fluid.Type
+ Propping.Agent.Type
+ Additive
+ Mesh.Size
+Know of some outliers in - Fluid.Water..Gals. Acid..Gals. Gel.x.link..Gals. Proppant...Total..lbs. Fluid...Total..lbs. Fluid.Amount Propping.Agent.Amount Propping.Agent.Amount.Per.Foot Fluid.Amount.Per.Foot
+ Fluid.Water..Gals. has outliers!
+ Acid..Gals. has outliers!
+ Gel.x.link..Gals. has outliers!
+ Proppant...Total..lbs. has outliers!
+ Fluid...Total..lbs. has outliers!
+ Fluid.Amount has outliers!
+ Propping.Agent.Amount has outliers!
+ Fluid.Amount.Per.Foot has outliers!
+ Propping.Agent.Amount.Per.Foot has outliers!
+Removed outliers by adjusting to the 99.99 | 0.01 percentile value if more than 99.99 | 0.01 percentile.
+Check for rows that have missing values > 80 % i.e. 30 columns missing
+ 0 such rows found!
+Check for columns that have missing values > 80 % i.e. 351 rows missing
+ 2 such columns found!
+Deleting columns Pressure.Breakdown Injection.Rate
+Data now has 439 rows and 36 columns
+Cleaning the Mesh.Size as:
+1. Replaced '20/04', '20 /40', '20/20', '24/40', '20/80' by '20/40'
+2. Replaced '20/40 & 16/3' by 'MIXED'
+Dealing with some new categories in test data as:
+1. Propping.Agent.Type replaced 'SANDCRRCSD' by 'SANDRCSD'
+2. Type replaced 'REACID' by 'ACID'
+3. Mesh.Size replaced '16/50' & '18/50' by '18/40'
+
+Conversion of categorical values to numeric values:
+For a categorical feature F, replace categorical value x with mean target value for the samples for which feature F has value x.
+
+=> Subarea has 6 categories
+replacing A by NaN
+replacing B by NaN
+replacing C by NaN
+replacing D by NaN
+replacing E by NaN
+replacing F by 37.47854
+=> Operator has 11 categories
+replacing APACHE CORPORATION by 29.25573
+replacing ATHLON ENERGY OPERATING LLC by 3.536606
+replacing ATHLON FE OPERATING LLC by 32.3757
+replacing BERRY OIL COMPANY by NaN
+replacing BTA OIL PRODUCERS LLC by 55.988
+replacing ENDEAVOR ENERGY RESOURCES LIMITED PRTS by 43.92743
+replacing ENERGEN RESOURCES CORPORATION by 31.36012
+replacing LAREDO PETROLEUM - DALLAS INCORPORATED by 42.06411
+replacing LAREDO PETROLEUM INCORPORATED by 113.6293
+replacing PIONEER NATURAL RESOURCES USA INC by 31.75634
+replacing PRIME OPERATING COMPANY by 19.604
+=> County has 2 categories
+replacing GLASSCOCK by 42.39245
+replacing REAGAN by 35.30206
+=> WB.Spacing.Proxy has 5 categories
+replacing 160 by 33.7284
+replacing 40 by 42.98526
+replacing 80 by 34.9256
+replacing Over 160 by 29.27409
+replacing Sub 20 by 7.836
+=> SPBY.Spacing.Proxy has 6 categories
+replacing 160 by 60.54388
+replacing 20 by 32.41648
+replacing 40 by 33.18244
+replacing 80 by 36.19495
+replacing Over 160 by 38.50726
+replacing Sub 20 by 43.184
+=> Type has 4 categories
+replacing ACID by 35.2334
+replacing FLSH by NaN
+replacing FRAC by 37.75565
+replacing NTRL by 20.812
+=> Fluid.Type has 11 categories
+replacing A by 41.9279
+replacing F by NaN
+replacing FLUD by 37.42901
+replacing FRAC by NaN
+replacing G by NaN
+replacing GEL by 39.97253
+replacing O by NaN
+replacing SLKW by 49.74385
+replacing W by 28.86686
+replacing WTR by NaN
+replacing X-LINKGEL by 33.62096
+=> Propping.Agent.Type has 3 categories
+replacing SAND by 34.44453
+replacing SANDRCSD by 35.29993
+replacing undefined by 41.9279
+=> Additive has 20 categories
+replacing ACET by NaN
+replacing ACIN by NaN
+replacing BIOC by 35.51529
+replacing BRKR by 40.58153
+replacing CACL by NaN
+replacing CRIN by NaN
+replacing FECL by NaN
+replacing FRDC by 26.39412
+replacing GELA by 40.1637
+replacing GLST by NaN
+replacing HCL by 41.76099
+replacing KCL by 32.93
+replacing NECL by NaN
+replacing NEFE by 43.676
+replacing PFCL by NaN
+replacing SCIN by 17.49468
+replacing SFAC by 33.53407
+replacing WGEL by 38.49592
+replacing WPLY by NaN
+replacing XLNK by 41.82554
+=> Mesh.Size has 4 categories
+replacing 20/40 by 29.49143
+replacing 20/50 by 4.695253
+replacing 30/50 by 36.408
+replacing MIXED by 46.18349
+
+Nonparametric imputation of Missing Values using Random Forest
+  missForest iteration 1 in progress...done!
+  missForest iteration 2 in progress...done!
+  missForest iteration 3 in progress...done!
+
+
+# of wells on which to train =  316
+# of wells on which to predict =  123
+
+Keep aside  20 % unseen wells from the training model =  60  wells 
+
+
+Check for near zero variance columns:
+Removing near zero variant columns - Subarea
+
+Check for pair-wise collinear columns:
+ Fluid.Water..Gals. and Fluid...Total..lbs. are collinear having 0.9887127 ==> dropping Fluid...Total..lbs.
+ Proppant...Total..lbs. and Propping.Agent.Amount are collinear having 0.9994941 ==> dropping Propping.Agent.Amount
+ Fluid.Amount and Fluid.Water..Gals. are collinear having 0.9783244 ==> dropping Fluid.Water..Gals.
+ Propping.Agent.Amount.Per.Foot and Proppant...Total..lbs. are collinear having 0.9961983 ==> dropping Proppant...Total..lbs.
+ Completion.Date and Completion.Year are collinear having 0.9929358 ==> dropping Completion.Year
+ Between_Zone and Deepest_Zone are collinear having 0.9677328 ==> dropping Deepest_Zone
+ Treatment.Records and Number are collinear having 0.9778884 ==> dropping Number
+ Geology.Score and Between_Zone are collinear having 0.9185314 ==> dropping Between_Zone
+
+Check and remove for multicollinear columns:
+ Treatment.Records Geology.Score  are multicollinear!
+
+The ranked order of importance of features:
+Frac.Stages
+Depth.Base
+Operator
+Depth.Total.Driller..ft.
+Mesh.Size
+Surface.Latitude
+Additive
+Surface.Longitude
+Completion.Date
+Fluid.Type
+Propping.Agent.Type
+Propping.Agent.Amount.Per.Foot
+Acid..Gals.
+Gel.x.link..Gals.
+Fluid.Amount.Per.Foot
+Fluid.Amount
+Treated.Stage.Height
+County
+WB.Spacing.Proxy
+SPBY.Spacing.Proxy
+Total.Height
+Other..Gals.
+
+Do random 80%-20% splits, build model on training set and predict on test set 100 times
+* * 17.35583 * 0.5088768 * 0.4064011 * 1
+* * 55.73715 * NaN * 0.1353695 * 2
+* * 45.04464 * 0.5019744 * 0.151884 * 3
+* * 76.95521 * NaN * 0.06147597 * 4
+* * 17.53848 * 0.4547046 * 0.1664473 * 5
+* * 37.67648 * NaN * 0.09913551 * 6
+* * 64.75798 * 0.7343499 * 0.2914603 * 7
+* * 17.53421 * 0.4550265 * 0.6814762 * 8
+* * 21.40337 * 0.6498679 * 0.5228436 * 9
+* * 29.19119 * 0.5880563 * 0.2558642 * 10
+* * 55.44358 * 0.5820244 * 0.283914 * 11
+* * 20.02713 * 0.5118222 * 0.5853807 * 12
+* * 65.29762 * NaN * 0.008803846 * 13
+* * 18.36842 * NaN * 0.4180683 * 14
+* * 16.00613 * 0.5127531 * 0.5208685 * 15
+* * 23.75008 * NaN * -0.002364594 * 16
+* * 49.17811 * NaN * 0.06611247 * 17
+* * 18.90562 * 0.6193473 * 0.4151175 * 18
+* * 74.4932 * NaN * -0.03687253 * 19
+* * 19.94227 * 0.5143645 * 0.2160668 * 20
+* * 37.25345 * NaN * 0.1727673 * 21
+* * 43.47701 * NaN * 0.09438452 * 22
+* * 23.90275 * 0.5821226 * 0.4363649 * 23
+* * 36.14495 * NaN * 0.200842 * 24
+* * 18.58259 * 0.6062684 * 0.4351585 * 25
+* * 32.58978 * 0.6086763 * 0.2759373 * 26
+* * 57.32435 * NaN * 0.1721582 * 27
+* * 33.30398 * 0.4607284 * 0.2357775 * 28
+* * 117.8667 * NaN * 0.09296012 * 29
+* * 33.90181 * 0.5658178 * 0.3932856 * 30
+* * 30.90293 * 0.7586401 * -0.2423286 * 31
+* * 17.42754 * 0.4418681 * 0.3890914 * 32
+* * 37.35377 * 0.6205264 * 0.2862213 * 33
+* * 40.83998 * NaN * 0.1748535 * 34
+* * 70.31093 * NaN * 0.07401028 * 35
+* * 40.79357 * 0.5688086 * 0.1002652 * 36
+* * 70.00444 * NaN * 0.06379779 * 37
+* * 18.4056 * 0.4360991 * 0.05517277 * 38
+* * 89.21835 * 0.7030517 * 0.0407593 * 39
+* * 60.58849 * NaN * 0.1165617 * 40
+* * 74.1755 * NaN * 0.0733385 * 41
+* * 35.83667 * 0.5647867 * 0.3943293 * 42
+* * 53.51839 * NaN * -0.008904464 * 43
+* * 128.7169 * 0.6533966 * 0.07931211 * 44
+* * 22.76686 * 0.5825547 * 0.1434131 * 45
+* * 24.73883 * 0.5286885 * 0.4424463 * 46
+* * 16.61231 * 0.4605662 * 0.4205311 * 47
+* * 25.39735 * 0.6127437 * 0.1910678 * 48
+* * 37.34218 * 0.6228899 * 0.3437443 * 49
+* * 54.55697 * 0.533611 * 0.3518661 * 50
+* * 30.2613 * NaN * 0.2376925 * 51
+* * 59.78147 * NaN * 0.1634562 * 52
+* * 54.06188 * 0.6020202 * 0.05958827 * 53
+* * 94.89204 * NaN * -0.03665388 * 54
+* * 52.98681 * 0.5020277 * 0.4307427 * 55
+* * 63.16211 * 0.6386403 * 0.2178452 * 56
+* * 57.99872 * 0.6326842 * 0.3479767 * 57
+* * 21.97609 * 0.4829925 * 0.346866 * 58
+* * 75.10413 * NaN * 0.03656803 * 59
+* * 31.47657 * NaN * 0.100735 * 60
+* * 65.6423 * NaN * -0.06266519 * 61
+* * 22.82586 * 0.7056792 * 0.4132573 * 62
+* * 14.25516 * 0.5123957 * 0.2982201 * 63
+* * 64.27952 * 0.670976 * 0.2555513 * 64
+* * 52.94217 * NaN * 0.08667429 * 65
+* * 18.65215 * 0.4918229 * 0.4293015 * 66
+* * 61.37436 * 0.6419201 * 0.266206 * 67
+* * 30.71436 * 0.5791603 * 0.1222254 * 68
+* * 19.20849 * 0.5295825 * 0.2911631 * 69
+* * 25.07974 * 0.5369567 * 0.1331782 * 70
+* * 24.59091 * 0.5558577 * 0.10789 * 71
+* * 54.00737 * 0.6229973 * 0.3949527 * 72
+* * 63.90057 * 0.7178592 * 0.296686 * 73
+* * 16.86528 * 0.4961524 * 0.2770337 * 74
+* * 20.84173 * 0.6756343 * 0.4589456 * 75
+* * 97.28484 * NaN * 0.06048163 * 76
+* * 15.63753 * 0.4502609 * 0.2317841 * 77
+* * 102.5875 * 0.8226461 * 0.1072753 * 78
+* * 27.44611 * NaN * 0.3793615 * 79
+* * 19.69668 * 0.5128788 * 0.4481305 * 80
+* * 34.56465 * NaN * -0.007932063 * 81
+* * 37.65143 * NaN * 0.2021123 * 82
+* * 94.10224 * NaN * 0.01926552 * 83
+* * 18.72229 * 0.4339003 * 0.6518049 * 84
+* * 13.75136 * 0.5391667 * 0.2961088 * 85
+* * 17.8118 * 0.4523945 * 0.2083225 * 86
+* * 48.36032 * NaN * 0.2075663 * 87
+* * 34.9326 * 0.5229538 * 0.4146199 * 88
+* * 25.55306 * 0.5315588 * 0.3526947 * 89
+* * 82.8687 * NaN * 0.06709802 * 90
+* * 16.12468 * 0.4802199 * 0.1608736 * 91
+* * 21.65462 * 0.528608 * 0.4797878 * 92
+* * 54.33879 * NaN * 0.1547547 * 93
+* * 80.12872 * NaN * 0.07232674 * 94
+* * 89.04862 * NaN * 0.08276961 * 95
+* * 49.72272 * NaN * -0.3005756 * 96
+* * 57.49064 * 0.5893521 * 0.1826113 * 97
+* * 19.77552 * 0.4733501 * 0.2196986 * 98
+* * 14.61969 * 0.4767533 * 0.320614 * 99
+* * 24.9359 * 0.6489368 * 0.1699554 * 100
+
+Min rmse | 13.75136 | Avg rmse | 43.24154 | Max rmse | 128.7169
+Min rmsle | 0.4339003 | Avg rmsle | 0.5651326 | Max rmsle | 0.8226461
+Min cor | -0.3005756 | Avg cor | 0.2210158 | Max cor | 0.6814762
+RMSE | 19.95142 | RMSLE | 0.5443621 | COR | 0.5372014
